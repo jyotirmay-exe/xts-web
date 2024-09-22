@@ -1,15 +1,19 @@
-import flask
-from flask import render_template
+from flask import Flask, request, render_template, jsonify
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return("HOME")
+    # return("HOMEPAGE")
+    return render_template('index.html')
 
 @app.route("/register")
 def registration():
-    return("REGISTER")
+    return(render_template("index.html"))
+
+@app.route("/submitregn", methods=["POST"])
+def submit():
+    return(request.form)
 
 @app.route("/teams")
 def teaminfo():
