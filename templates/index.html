@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+{% from "pageTemplate.html" import pageTitle %}
+{% from "pageTemplate.html" import pageFooter %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Xavier's TechByte Society</title>
+</head>
+
+<body>
+    {{ pageTitle() }}
+    <div class="container">
+        <div class="main-container">
+            <div class="text-section">
+                <div class="section motto">
+                    <h2 class="section-title">- Our Motto -</h2>
+                    <p>At Xavier's TechByte Society, our motto "Code. Collaborate. Create" encapsulates the essence of
+                        our community and our commitment to fostering a vibrant tech culture.</p>
+                    <div class="motto-comp">
+                        <div class="motto-ele"><strong>CODE</strong></div>
+                        <div class="motto-text">We believe that coding is the foundation of innovation.
+                            By equipping students with the skills to program and understand computer science principles,
+                            we empower them to turn their ideas into reality.</div>
+                    </div>
+                    <div class="motto-comp">
+                        <div class="motto-ele"><strong>COLLABORATE</strong></div>
+                        <div class="motto-text">Collaboration is at the heart of our society. We
+                            recognize that the best ideas often emerge from diverse perspectives and teamwork. By
+                            bringing together students from different backgrounds and skill levels, we create an
+                            environment where sharing knowledge and working together leads to greater creativity and
+                            problem-solving.</div>
+                    </div>
+                    <div class="motto-comp">
+                        <div class="motto-ele"><strong>CREATE</strong></div>
+                        <div class="motto-text">Ultimately, we are here to inspire creation. Whether
+                            it's building innovative applications, designing engaging websites, or developing unique
+                            solutions to real-world problems, we encourage our members to harness their creativity.
+                        </div>
+                    </div>
+                    <p>By combining coding skills with collaboration, we aim to turn visions into tangible projects that
+                        make a positive impact. At Xavier's TechByte Society, every line of code is a step toward
+                        something extraordinary.</p>
+                </div>
+
+                <div class="section vision">
+                    <h2 class="section-title">- Our Vision- </h2>
+                    <p>Our goal at Xavier's TechByte Society is to establish a welcoming and inclusive space where
+                        students may discover, experiment with, and get fully immersed in the fascinating field of
+                        computer science. We think that everyone should be able to use technology and code, creating a
+                        community where everyone is encouraged to contribute ideas and work together on creative
+                        projects.</p>
+
+                    <p>Our goal is to foster an environment where creativity thrives and where students are inspired to
+                        interact in an enjoyable and engaging manner with challenging ideas and real-world applications.
+                        Together, we hope to motivate one another, generate fresh concepts, and create original
+                        solutions that push the envelope of technology. Our dedication lies in fostering an environment
+                        of cooperation, inquisitiveness, and ongoing education, guaranteeing that every pupil not only
+                        acquires technical skills but also builds lasting connections and a strong sense of belonging
+                        within our community.</p>
+                </div>
+                <div class="section mission">
+                    <h2 class="section-title">- Our Mission -</h2>
+                    <p>‣ Foster Learning and Skill Development</p>
+                    <p>‣ Support Career Development (Career path guidance)</p>
+                    <p>‣ Encourage Research</p>
+                    <p>‣ Promoting Technical Awareness (Stay Current with Industry Trends)</p>
+                    <p>‣ Programming mindset / Good programming practices</p>
+                    <p>‣ Spreading awareness about Open-Source & open source contributions</p>
+                    <p>‣ Project building / Sharing project ideas</p>
+                    <p>‣ Networking (#learninginpublic, Connection with Alumni)</p>
+                    <p>‣ Improving technical writing</p>
+                    <p>‣ Profile building</p>
+                </div>
+            </div>
+        </div>
+        {{ pageFooter() }}
+    </div>
+</body>
+
+</html>
