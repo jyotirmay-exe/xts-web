@@ -4,17 +4,23 @@ body {
     background-color: #121212;
     color: #ffffff;
     font-family: Poppins, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: url('/static/assets/bg-img.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
+    padding-inline: 200px;
+    background: rgba(25,25,25,0.8);
 }
 
 .header {
@@ -25,7 +31,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #191919;
+    background: rgba(20,20,20,1);
     color: #e0e0e0;
     padding: 0px 0px;
     padding-top: 20px;
@@ -39,8 +45,8 @@ body {
 }
 
 .titleh1 {
-    margin: 0;
-    font-size: 2.2rem;
+    margin-block: -10px;
+    font-size: 2rem;
 }
 
 .icon {
@@ -58,6 +64,11 @@ body {
     margin-left: auto;
 }
 
+.main-container {
+    margin-top: 180px;
+    padding-bottom: 50px;
+}
+
 .section {
     padding-bottom: 10px;
     border-bottom: 2px #537983 solid;
@@ -66,11 +77,6 @@ body {
 .section p {
     font-size: 0.8em;
     text-align: justify;
-}
-
-.main-container {
-    margin-top: 200px;
-    padding-bottom: 50px;
 }
 
 .section-title {
@@ -98,8 +104,30 @@ body {
 }
 
 .mission p {
-    padding-left: 200px;
+    padding-left: 100px;
     text-align: left;
+}
+
+.team-heads {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.head {
+    margin-inline: 100px;
+}
+
+.head p {
+    text-align: center;
+    font-weight: 700;
+}
+
+.head img {
+    width: 150px;
+    border-radius: 50%;
 }
 
 .logo {
@@ -128,7 +156,8 @@ h1 {
 }
 
 .buttons a {
-    background-color: #222222;
+    background-color: rgba(50,50,50,0.2);
+    box-shadow: 0 0 10px #131313;
     border-radius: 10px;
     font-size: 0.6em;
     padding: 15px;
@@ -150,12 +179,16 @@ h1 {
         font-size: 16px;
     }
 
+    .container {
+        padding-inline: 0px;
+    }
+
     .titleh1 {
         font-size: 1.2rem;
     }
 
     .main-container {
-        margin-top: 15vh;
+        margin-top: 120px
     }
 
     .header {
@@ -177,5 +210,14 @@ h1 {
 
     .buttons {
         flex-direction: column;
+    }
+
+    .head {
+        margin-inline: 50px;
+    }
+
+    .head img {
+        width: 80px;
+        border-radius: 50%;
     }
 }
