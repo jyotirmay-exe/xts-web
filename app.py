@@ -1,7 +1,10 @@
 from flask import Flask, request, render_template
-import os
+import json
 
 app = Flask(__name__)
+
+with open('./config.json') as f:
+    conf = json.load(f)
 
 @app.route("/")
 def home():
@@ -15,18 +18,13 @@ def registration():
 def submit():
     return(request.form)
 
+@app.route("/patrons")
+def patronsinfo():
+    return render_template("patrons.html")
+
 @app.route("/teams")
 def teaminfo():
-    files = os.walk("./static/assets/heads")
-    data = list(files)[0][2]
-    dic = {"tech":[],
-           "pr":[],
-           "exec":[]}
-    for ele in data:
-        team, name = ele.split('-')
-        dic[team].append({"name":name.split('.')[0].upper(),
-                          "src": f"/static/assets/heads/{ele}"})
-    return render_template("teams.html",heads = dic)
+    return render_template("teams.html",heads = conf['team-heads'])
 
 if __name__ == "__main__":
     app.run()
