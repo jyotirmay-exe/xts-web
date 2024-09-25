@@ -1,0 +1,36 @@
+{
+    "mysqldb": {},
+    "team-heads": {
+        "tech": [ 
+            {
+                "name": "",
+                "src": ""
+            },
+            {
+                "name": "",
+                "src": ""
+            }
+        ],
+        "pr": [
+            {
+                "name": "",
+                "src": ""
+            },
+            {
+                "name": "",
+                "src": ""
+            }
+        ],
+        "exec": [
+            {
+                "name": "",
+                "src": ""
+            },
+            {
+                "name": "",
+                "src": ""
+            }
+        ]
+    },
+    "patrons": []
+}
