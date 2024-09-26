@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for, redirect
 import json
 
 app = Flask(__name__)
@@ -20,11 +20,23 @@ def submit():
 
 @app.route("/patrons")
 def patronsinfo():
-    return render_template("patrons.html")
+    return render_template("patrons.html", patrons = conf['patrons'])
 
 @app.route("/teams")
 def teaminfo():
-    return render_template("teams.html",heads = conf['team-heads'])
+    return render_template("teams.html", heads = conf['team-heads'])
+
+@app.route("/contact")
+def contactus():
+    return render_template("contact.html")
+
+@app.route("/send-message", methods=["POST"])
+def sendMessage():
+    name = request.form['name']
+    email = request.form['email']
+    msg = request.form['message']
+    print(name, email, msg)
+    return redirect(url_for("contactus"))
 
 if __name__ == "__main__":
     app.run()
