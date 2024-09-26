@@ -2,12 +2,14 @@
 <html lang="en">
 {% from "pageTemplate.html" import pageTitle %}
 {% from "pageTemplate.html" import pageFooter %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/styles.css">
     <title>XTS Teams</title>
 </head>
+
 <body>
     {{ pageTitle() }}
     <div class="container">
@@ -15,44 +17,82 @@
             <div class="text-section">
                 <div class="section">
                     <h2 class="section-title">- Our Teams -</h2>
-                    <p>In Xavier's TechByte Society, members are classified into teams based on their interests and expertise. Each team operates at the same hierarchical level, sharing equal authority in various decision-making areas. Rather than having a President or Vice-Presidents, XTS is led by Team Heads, who oversee the activities within their respective teams.</p>
+                    <p>In Xavier's TechByte Society, members are classified into teams based on their interests and
+                        expertise. Each team operates at the same hierarchical level, sharing equal authority in various
+                        decision-making areas. Rather than having a President or Vice-Presidents, XTS is led by Team
+                        Heads, who oversee the activities within their respective teams.</p>
                 </div>
                 <div class="section">
                     <h2 class="section-title">Tech Team</h2>
-                    <div class="vip">
-                        <div class="head"><img src="{{ heads['tech'][0].src }}"><p>{{ heads['tech'][0].name }} (Head)<p></div> 
+                    <div class="team-head">
+                        <div class="head"><img src="{{ heads['tech'][0].src }}">
+                            <p>{{ heads['tech'][0].name }} (Head)
+                            <p>
+                        </div>
 
-                        <div class="head"><img src="{{ heads['tech'][1].src }}"><p>{{ heads['tech'][1].name }} (Head)<p></div> 
+                        <div class="head"><img src="{{ heads['tech'][1].src }}">
+                            <p>{{ heads['tech'][1].name }} (Head)
+                            <p>
+                        </div>
                     </div>
                     <p>
-                        The Tech Team of Xavier's TechByte Society is the backbone of all technical operations within the club. From spearheading projects related to software development, coding, and problem-solving to delving into new and emerging technologies, the team ensures that the club stays ahead of the tech curve.</p>
-                        <p>They also focus on building innovative solutions and are responsible for managing the infrastructure that supports all technical initiatives. Whether it's a coding challenge, a web project, or a hackathon, the Tech Team works collaboratively to ensure everything runs smoothly and efficiently.</p>
+                        The Tech Team of Xavier's TechByte Society is the backbone of all technical operations within
+                        the club. From spearheading projects related to software development, coding, and
+                        problem-solving to delving into new and emerging technologies, the team ensures that the club
+                        stays ahead of the tech curve.</p>
+                    <p>They also focus on building innovative solutions and are responsible for managing the
+                        infrastructure that supports all technical initiatives. Whether it's a coding challenge, a web
+                        project, or a hackathon, the Tech Team works collaboratively to ensure everything runs smoothly
+                        and efficiently.</p>
 
                     <p>Members: ABC, XYZ, ABC, XYZ</p>
                 </div>
 
                 <div class="section">
                     <h2 class="section-title">Creative & PR Team</h2>
-                    <div class="vip">
-                        <div class="head"><img src="{{ heads['pr'][0].src }}"><p>{{ heads['pr'][0].name }} (Head)<p></div> 
+                    <div class="team-head">
+                        <div class="head"><img src="{{ heads['pr'][0].src }}">
+                            <p>{{ heads['pr'][0].name }} (Head)
+                            <p>
+                        </div>
 
-                        <div class="head"><img src="{{ heads['pr'][1].src }}"><p>{{ heads['pr'][1].name }} (Head)<p></div> 
+                        <div class="head"><img src="{{ heads['pr'][1].src }}">
+                            <p>{{ heads['pr'][1].name }} (Head)
+                            <p>
+                        </div>
                     </div>
-                    <p>The Creative & PR Team is responsible for shaping the identity and voice of Xavier's TechByte Society. This team handles the design and creation of promotional content, from graphics to videos, and manages the club's social media presence. They are the key communicators who make sure the club's events, projects, and announcements reach the right audience.</p>
-                    <p>Their work involves crafting engaging campaigns, enhancing the club’s visibility, and ensuring that all external communications reflect the club’s ethos. Whether it's designing posters for an event or crafting a compelling social media post, they bring creativity to every task.</p>
+                    <p>The Creative & PR Team is responsible for shaping the identity and voice of Xavier's TechByte
+                        Society. This team handles the design and creation of promotional content, from graphics to
+                        videos, and manages the club's social media presence. They are the key communicators who make
+                        sure the club's events, projects, and announcements reach the right audience.</p>
+                    <p>Their work involves crafting engaging campaigns, enhancing the club’s visibility, and ensuring
+                        that all external communications reflect the club’s ethos. Whether it's designing posters for an
+                        event or crafting a compelling social media post, they bring creativity to every task.</p>
 
                     <p>Members: ABC, XYZ, ABC, XYZ</p>
                 </div>
 
                 <div class="section">
                     <h2 class="section-title">Executive Team</h2>
-                    <div class="vip">
-                        <div class="head"><img src="{{ heads['exec'][0].src }}"><p>{{ heads['exec'][0].name }} (Head)<p></div> 
+                    <div class="team-head">
+                        <div class="head"><img src="{{ heads['exec'][0].src }}">
+                            <p>{{ heads['exec'][0].name }} (Head)
+                            <p>
+                        </div>
 
-                        <div class="head"><img src="{{ heads['exec'][1].src }}"><p>{{ heads['exec'][1].name }} (Head)<p></div> 
+                        <div class="head"><img src="{{ heads['exec'][1].src }}">
+                            <p>{{ heads['exec'][1].name }} (Head)
+                            <p>
+                        </div>
                     </div>
-                    <p>The Executive Team of Xavier's TechByte Society is responsible for ensuring the smooth operation and management of the club's day-to-day activities. They coordinate all administrative tasks, including organizing meetings, events, and collaborations across different teams.</p>
-                    <p>This team also handles club logistics, strategic planning, and decision-making, ensuring that resources are allocated efficiently and that the club remains on course to achieve its goals. Acting as a bridge between all other teams, the Executive Team ensures that the club operates cohesively, fostering collaboration while keeping track of long-term objectives and milestones to ensure sustained success.</p>
+                    <p>The Executive Team of Xavier's TechByte Society is responsible for ensuring the smooth operation
+                        and management of the club's day-to-day activities. They coordinate all administrative tasks,
+                        including organizing meetings, events, and collaborations across different teams.</p>
+                    <p>This team also handles club logistics, strategic planning, and decision-making, ensuring that
+                        resources are allocated efficiently and that the club remains on course to achieve its goals.
+                        Acting as a bridge between all other teams, the Executive Team ensures that the club operates
+                        cohesively, fostering collaboration while keeping track of long-term objectives and milestones
+                        to ensure sustained success.</p>
 
                     <p>Members: ABC, XYZ, ABC, XYZ</p>
                 </div>
@@ -61,4 +101,5 @@
         {{ pageFooter() }}
     </div>
 </body>
+
 </html>

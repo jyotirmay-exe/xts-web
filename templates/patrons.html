@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% from "pageTemplate.html" import pageTitle %}
+{% from "pageTemplate.html" import pageFooter %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>XTS Patrons</title>
+</head>
+
+<body>
+    {{ pageTitle() }}
+    <div class="container">
+        <div class="main-container">
+            <div class="text-section">
+                <div class="section" style="border: none;">
+                    <h2 class="section-title">- Our Patrons -</h2>
+                    <p>The patrons of Xavier's TechByte Society are esteemed professors and mentors who have
+                        continuously inspired us to pursue our passion for technology. </p>
+                    <p>Their guidance and unwavering support played an instrumental role in the creation of this club.
+                        They encouraged us to transform our ideas into reality, offering valuable insights and resources
+                        along the way. Without their dedication, XTS would not have been possible. </p>
+                    <p>Their belief in our vision and commitment to fostering a collaborative learning environment has
+                        motivated us to build a platform where students can innovate, learn, and grow together. We are
+                        deeply grateful for their contributions.</p>
+                </div>
+
+                <div class="section patron-section">
+                    <div class="hod">
+                        <div class="head">
+                            <img src="{{ patrons['hod']['src'] }}">
+                            <p>{{ patrons['hod']['name'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section patron-section">
+                    {% for teacher in patrons['teachers'] %}
+                    <div class="vip">
+                        <div class="head">
+                            <img src="{{ teacher['src'] }}">
+                            <p>{{ teacher['name'] }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="section" style="margin-bottom: 50px;">
+                    <p>We are immensely thankful to our patrons for their unwavering belief in our vision. Their
+                        encouragement and commitment to fostering a thriving tech community have been pivotal to our
+                        success. Their continued guidance will inspire us to achieve greater heights, and we remain
+                        deeply grateful for their support.</p>
+                </div>
+            </div>
+            {{ pageFooter() }}
+        </div>
+    </div>
+</body>
+
+</html>
