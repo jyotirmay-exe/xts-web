@@ -80,16 +80,14 @@ body {
 }
 
 .section-title {
-    margin-top: 50px;
+    margin-block: 50px;
     font-size: 1.5em;
 }
 
 .patron-section {
-    width: 100%;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    padding-block: 20px;
+    justify-content: space-between;
     border: none;
 }
 
@@ -117,16 +115,27 @@ body {
     text-align: left;
 }
 
-.vip {
+.team-head {
     display: flex;
     flex-direction: row;
+    gap: 200px;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-.head {
-    margin-inline: 100px;
+.vip {
+    flex-basis: 33%; 
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.hod {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .head p {
@@ -136,6 +145,7 @@ body {
 
 .head img {
     width: 150px;
+    height: 150px;
     border-radius: 50%;
 }
 
@@ -180,6 +190,7 @@ h1 {
 
 .buttons a:hover {
     background-color: #dcdcdc;
+    transform: scale(1.1);
     color: #0e0e0e;
 }
 
@@ -188,16 +199,97 @@ h1 {
     border: 0;
 }
 
+.social-media-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.social-icons img {
+    width: 50px;
+    height: 50px;
+    margin-inline: 20px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(150%);
+}
+
+.contact-form-section {
+    margin-top: 30px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label{
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-block-end: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+button {
+    background-color: rgba(23, 185, 50, 0.7);
+    box-shadow: 0 0 10px #131313;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 0.6em;
+    padding: 15px;
+    margin: 10px 10px;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: ease-in 0.3s background-color;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+@media(max-width:1600px) {
+    .icon {
+        width: 80px;
+    }
+}
+
 @media(max-width:1000px) {
     body {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .container {
-        padding-inline: 10px;
+        padding-inline: 0px;
     }
 
     .titleh1 {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
         font-size: 1.2rem;
     }
 
@@ -222,6 +314,10 @@ h1 {
         padding-left: 20px;
     }
 
+    .vip {
+        flex-basis: 50%; 
+    }
+
     .buttons {
         flex-direction: row;
     }
@@ -235,11 +331,31 @@ h1 {
     }
 
     .head {
-        margin-inline: 50px;
+        margin-inline: 10px;
     }
 
     .head img {
         width: 80px;
+        height: 80px;
         border-radius: 50%;
+    }
+
+    .team-head {
+        gap: 50px;
+    }
+
+    .social-icons img {
+        width: 40px;
+        height: 40px;
+        margin-inline: 5px;
+        transition: transform 0.3s ease;
+    }    
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 0.8rem;
     }
 }
