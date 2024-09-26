@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
     background-color: #121212;
@@ -199,6 +200,27 @@ h1 {
     border: 0;
 }
 
+.about {
+    border: none;
+}
+
+.reg-button {
+    padding: 10px 0px;
+}
+
+.reg-button a {
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.6rem;
+    font-weight: 100;
+    color: white;
+    background-color: rgba(1, 204, 1, 0.6);
+    padding-inline: 50px;
+}
+
+.reg-button a:hover {
+    transform: scale(100%);
+}
+
 .social-media-section {
     text-align: center;
     margin: 20px 0;
@@ -324,6 +346,10 @@ button:hover {
 
     .buttons a {
         width: 50px;
+    }
+
+    .reg-button a {
+        width: 100%;
     }
 
     .big-button {
