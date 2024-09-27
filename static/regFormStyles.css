@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+    background: url(assets/bg-img.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    width: 90vw;
+    max-width: 1000px;
+    background: rgba(48, 48, 48, 0.5);
+    padding: 25px 30px;
+    border-radius: 10px;
+    outline: 1px solid rgb(255, 255, 255);
+    margin-bottom: 20px;
+}
+
+.titleText {
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 10px 5px black;
+}
+
+.subtitleText {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px white;
+}
+
+.member {
+    font-size: 20px;
+}
+
+.main-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.container form .input-area {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.input-area label,
+.about-area label {
+    flex: 0 0 100%;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5%;
+}
+
+.input-area input,
+.input-area select {
+    flex: 0 0 95%;
+    font-size: 16px;
+    height: 40px;
+    width: calc(100% - 22px);
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid grey;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.input-area input:focus,
+.input-area select:focus,
+.about-area textarea:focus{
+    box-shadow: 0 0 5px cyan;
+}
+
+.sublabel {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.submit-response {
+    color: white;
+    margin: 40px 0px;
+}
+
+.connect {
+    padding-top: 20px;
+    border-top: solid 1px white;
+    margin: 20px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.socials img{
+    margin: 0px 30px;
+}
+
+.socials a{
+    text-decoration: none;
+}
+
+.about-area .checkbox {
+    /* display: flex; */
+    /* align-items: center; */
+    margin-top: 10px;
+}
+
+.about-area .checkbox input.ok {
+    /* margin: 0; */
+    /* margin-right: 10px; */
+    box-shadow: 1px 1px 5px #000;
+    border-radius: 50%;
+}
+
+.about-area .checkbox .checkboxLabel {
+    font-weight: 300;
+}
+
+.about-area .checkbox .checkboxLabel a{
+    color: white;
+}
+
+.about-area .checkbox label {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.about-area textarea {
+    height: 100px;
+    width: 98%;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid grey;
+    padding: 5px 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    resize: none;
+}
+
+.form-submit {
+    margin-top: 20px;
+}
+
+.form-submit input {
+    display: block;
+    width: 50%;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background: rgba(61, 83, 109, 1);
+    border-radius: 5px;
+}
+
+.form-submit input:disabled {
+    background: rgb(36, 39, 43);
+}
+
+.form-submit input:not(:disabled):hover {
+    background: rgba(56, 204, 63, 1);
+    color: rgb(255, 255, 255);
+}
+
+.faq-button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(63, 102, 114, 1);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.faq-button:hover {
+    background-color: rgba(56, 71, 204, 1);
+}
+
+
+@media (max-width: 800px) {
+    .main-info {
+        margin-left: 5%;
+    }
+
+    .input-area label,
+    .about-area label {
+        font-size: 12px;
+    }
+
+    .about-area {
+        margin-left: 5%;
+        max-width: 70vw;
+    }
+
+    .input-area input,
+    .input-area select {
+        font-size: 12px;
+    }
+
+    .about-area textarea {
+        font-size: 12px;
+    }
+
+    .titleText {
+        font-size: 24px;
+    }
+
+    .subtitleText {
+        font-size: 10px;
+    }
+
+    .member {
+        font-size: 14px;
+    }
+
+    .container form .input-area {
+        width: 100%;
+    }
+
+    .about-area .checkbox .checkboxLabel {
+        font-size: 12px;
+    }
+
+    .submit-response h1{
+        font-size: 20px;
+    }
+
+    .submit-response h2{
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .connect{
+        font-size: 12px;
+    }
+
+    .socials img{
+        margin: 0px 10px;
+        width: 30px;
+    }
+
+}
