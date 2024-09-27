@@ -32,7 +32,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(20,20,20,1);
+    background: rgba(20,20,20,0.95);
     color: #e0e0e0;
     padding: 0px 0px;
     padding-top: 20px;
@@ -176,7 +176,7 @@ h1 {
 }
 
 .buttons a {
-    background-color: rgba(50,50,50,0.2);
+    background-color: rgba(50,50,50,0.3);
     box-shadow: 0 0 10px #131313;
     border-radius: 10px;
     font-size: 0.6em;
@@ -204,16 +204,20 @@ h1 {
     border: none;
 }
 
+.register p {
+    font-size: 0.9em;
+    text-decoration: underline;
+}
+
 .reg-button {
     padding: 10px 0px;
 }
 
 .reg-button a {
-    font-family: "Press Start 2P", monospace;
-    font-size: 0.6rem;
-    font-weight: 100;
+    font-family: "Poppins", monospace;
+    font-size: 0.9rem;
     color: white;
-    background-color: rgba(1, 204, 1, 0.6);
+    background-color: rgba(1, 225, 1, 0.5);
     padding-inline: 50px;
 }
 
