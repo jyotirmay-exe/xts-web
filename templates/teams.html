@@ -45,7 +45,11 @@
                         project, or a hackathon, the Tech Team works collaboratively to ensure everything runs smoothly
                         and efficiently.</p>
 
-                    <p>Members: ABC, XYZ, ABC, XYZ</p>
+                    <p><strong>Members: </strong>
+                        {% for ele in members['tech'] %}
+                        {{ ele }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                 </div>
 
                 <div class="section">
@@ -69,7 +73,11 @@
                         that all external communications reflect the club’s ethos. Whether it's designing posters for an
                         event or crafting a compelling social media post, they bring creativity to every task.</p>
 
-                    <p>Members: ABC, XYZ, ABC, XYZ</p>
+                    <p><strong>Members: </strong>
+                        {% for ele in members['pr'] %}
+                        {{ ele }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                 </div>
 
                 <div class="section">
@@ -94,7 +102,11 @@
                         cohesively, fostering collaboration while keeping track of long-term objectives and milestones
                         to ensure sustained success.</p>
 
-                    <p>Members: ABC, XYZ, ABC, XYZ</p>
+                    <p><strong>Members: </strong>
+                        {% for ele in members['exec'] %}
+                        {{ ele }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                 </div>
             </div>
         </div>
