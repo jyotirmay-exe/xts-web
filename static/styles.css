@@ -269,10 +269,11 @@ h1 {
 
 .form-group input,
 .form-group textarea {
+    font-family: monospace;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 700;
 }
 
