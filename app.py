@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, url_for, redirect
+from discord_webhook import DiscordWebhook, DiscordEmbed
 from modules.mysql import MySQLConn
 import json, sys
 
@@ -9,6 +10,7 @@ with open('./config.json') as f:
 
 sqlconf = conf['mysqldb']
 mysql = None
+webhook = DiscordWebhook(url=conf['webhookURL'], username="New Webhook Username")
 
 try:
     mysql = MySQLConn(sqlconf['host'], sqlconf['user'], sqlconf['password'], sqlconf['db'])
@@ -66,7 +68,15 @@ def sendMessage():
     name = request.form['name']
     email = request.form['email']
     msg = request.form['message']
-    print(name, email, msg)
+
+    embed = DiscordEmbed(title="Message Recvd.", description="", color="03b2f8")
+    embed.add_embed_field(name="Name", value=f"{name}")
+    embed.add_embed_field(name="Email", value=f"{email}", inline=False)
+    embed.add_embed_field(name="Message", value=f"{msg}", inline=False)
+
+    webhook.add_embed(embed)
+    response = webhook.execute()
+
     return redirect(url_for("contactus"))
 
 if __name__ == "__main__":
