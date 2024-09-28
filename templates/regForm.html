@@ -13,20 +13,17 @@
 </head>
 
 <body>
+    <script src="/static/options/depts.js"></script>
+    <script src="/static/options/sems.js"></script>
+    <script src="/static/options/teams.js"></script>
+    <script src="/static/options/skills.js"></script>
     <div class="container">
         <h1 class="titleText">Xavier's TechByte Society</h1>
         <h4 class="subtitleText">Department of Computer Science <br> St. Xavier's College, Ranchi <br>
             <div class="member" id="member">Become a Valued Member</div>
-            (Currently exclusive to BCA and BIT students)
         </h4>
-        <form id="form" action="submitregn" method="post">
+        <form id="form" action="/submitregn" method="POST">
             <div class="main-info" id="main-info">
-                <script src="./static/options/depts.js"></script>
-                <script src="./static/options/sems.js"></script>
-                <script src="./static/options/skills.js"></script>
-                <script src="./static/options/teams.js"></script>
-                <script src="./submit.js"></script>
-
                 <div class="input-area">
                     <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" />
@@ -67,18 +64,25 @@
 
                 <div class="input-area">
                     <label for="skillset">Skills</label>
-                    <select id="skillSelect" name="skill" disabled="true">
-                        <option value="Select">Select a Team...</option>
+                    <select id="skillSelect" name="skill" disabled>
                     </select>
                 </div>
             </div>
 
             <div class="about-area" id="about-area">
                 <label for="about">Personal Insight&nbsp;<span class="sublabel">(100 words)</span></label>
+                <div class="bullet-points">
+                    <ul>
+                        <li>Tell us about your expertise</li>
+                        <li>What values you'll be adding to the club</li>
+                        <li>Can include projects, portfolios, etc.</li>
+                    </ul>
+                </div>
                 <textarea id="about" name="about" placeholder="Why Should You Be Selected?"
                     oninput="countWords(this)"></textarea>
+
                 <div class="checkbox">
-                    <input type="checkbox" class="ok" id="ok" name="ok" value="true" onchange="validateInputs()">
+                    <input type="checkbox" class="ok" id="ok" name="ok" value="true" onchange="submitCheck()">
                     <label class="checkboxLabel" for="ok">&nbsp;&nbsp;I agree to the <a href="/tnc"
                             target="_blank">Terms and Conditions</a> of membership</label>
                 </div>
@@ -86,9 +90,10 @@
 
             <center>
                 <div class="form-submit" id="form-submit">
-                    <input type="submit" id="submit" value="Submit" style="cursor: pointer">
+                    <input type="submit" id="submit" value="Submit" disabled="true" style="cursor: pointer">
                 </div>
                 <a href="/faqs" class="faq-button">FAQs Page</a>
+                <a href="/" class="faq-button">Home Page</a>
                 <div class="socials">
                     <div class="connect">Connect With Us</div>
                     <a href="mailto:xts@sxcran.org">
@@ -107,115 +112,8 @@
             </center>
         </form>
     </div>
-    <script>
-        function countWords(textarea) {
-            textarea = document.getElementById('about');
-            const sublabel = document.querySelector('.sublabel');
-            const maxWords = 100;
 
-            const words = textarea.value.trim().split(/\s+/);
-            const wordCount = words.filter(word => word.length > 0).length;
-
-            if (wordCount >= maxWords) {
-                textarea.value = words.slice(0, maxWords).join(' ');
-                sublabel.style.color = 'red';
-            }
-            else {
-                sublabel.style.color = 'white';
-            }
-
-            const remainingWords = maxWords - wordCount;
-            sublabel.innerHTML = `(${Math.max(remainingWords, 0)} words)`;
-            // document.getElementById('wordCount').innerText = `${words.length}/${wordLimit} words`;
-        }
-        window.addEventListener("DOMContentLoaded", function () {
-            document.getElementById('form').addEventListener("submit", function (e) {
-                e.preventDefault();
-                if (document.getElementById("ok").checked == false) {
-                    alert("Please check the confirmation box")
-                    return;
-                }
-                else {
-                    initiateSubmit(json);
-                }
-            })
-
-            checkDeadline();
-        });
-        
-        function validateInputs() {
-            if(document.getElementById('ok').checked==false) {
-                document.getElementById('submit').disabled=true;
-                return 0;
-            }
-
-            var allCorrect = 1;
-
-            var name = document.getElementById('fullName').value;
-            var dept = document.getElementById('deptSelect').value;
-            var sem = document.getElementById('semSelect').value;
-            var examroll = document.getElementById('examroll').value;
-            var email = document.getElementById('email').value;
-            var whatsapp = document.getElementById('whatsapp').value;
-            var team = document.getElementById('teamSelect').value;
-            var skill = document.getElementById('skillSelect').value;
-            var about = document.getElementById('about').value;
-
-            if(name.length==0) {
-                alert("Name cannot be empty"); allCorrect=0;
-            }
-
-            if(dept=="Select") {
-                alert("Select a department"); allCorrect=0;
-            }
-
-            if(sem=="Select") {
-                alert("Select a semester"); allCorrect=0;
-            }
-
-            if(examroll.length!=12) {
-                alert("Invalid exam roll no."); allCorrect=0;
-            }
-
-            if(!(email.match('[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+\.[.a-z]+'))){
-                alert("Invalid Email ID"); allCorrect=0;
-            }
-
-            if (whatsapp.length !== 10 && !(whatsapp.length > 10 && whatsapp.startsWith("+91"))) {
-                alert("Invalid Whatsapp No."); allCorrect=0;
-            }
-
-            if(team=="Select") {
-                alert("Select a Team"); allCorrect=0;
-            }
-            
-            if(skill=="Select") {
-                alert("Select a skill"); allCorrect=0;
-            }
-
-            if(about.length==0) {
-                alert("Personal Insight cannot be empty"); allCorrect=0;
-            }
-
-            if(allCorrect==0) {
-                document.getElementById('ok').checked=false;
-            }
-            else {
-                var data = [name,dept,sem,examroll,email,whatsapp,team,skill,about];
-                json = {
-                    "Name":data[0],
-                    "Dept.":data[1],
-                    "Semester":data[2],
-                    "Exam Roll No.":data[3],
-                    "Email":data[4],
-                    "Whatsapp":data[5],
-                    "Preferred Team":data[6],
-                    "Skill-Set":data[7],
-                    "About":data[8]
-                }
-            }
-        }
-    </script>
+    <script src="/static/scripts/submit.js"></script>
 </body>
 
 </html>
