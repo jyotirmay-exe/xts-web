@@ -6,6 +6,27 @@ window.onload = function () {
     }
 };
 
+function countWords(textarea) {
+    textarea = document.getElementById('about');
+    const sublabel = document.querySelector('.sublabel');
+    const maxWords = 100;
+
+    const words = textarea.value.trim().split(/\s+/);
+    const wordCount = words.filter(word => word.length > 0).length;
+
+    if (wordCount >= maxWords) {
+        textarea.value = words.slice(0, maxWords).join(' ');
+        sublabel.style.color = 'red';
+    }
+    else{
+        sublabel.style.color = 'white';
+    }
+
+    const remainingWords = maxWords - wordCount;
+    sublabel.innerHTML = `(${Math.max(remainingWords, 0)} words)`;
+    // document.getElementById('wordCount').innerText = `${words.length}/${wordLimit} words`;
+}
+
 function showThanks() {
     const responseDiv = document.createElement('div');
     responseDiv.innerHTML = `
