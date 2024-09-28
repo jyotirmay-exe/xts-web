@@ -1,9 +1,19 @@
 window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
+
+    const deadline = new Date('2024-10-01T12:00:00'); // October 1, 2024 12:00 PM
+    const currentDate = new Date();
+
     if (urlParams.get('success') === 'true') {
         hideMain();
         showThanks();
     }
+
+    if (currentDate < deadline) {
+        hideMain()
+        showPriorDeadline();
+    }
+
 };
 
 function countWords(textarea) {
@@ -25,6 +35,18 @@ function countWords(textarea) {
     const remainingWords = maxWords - wordCount;
     sublabel.innerHTML = `(${Math.max(remainingWords, 0)} words)`;
     // document.getElementById('wordCount').innerText = `${words.length}/${wordLimit} words`;
+}
+
+function showPriorDeadline() {
+    const responseDiv = document.createElement('div');
+    responseDiv.innerHTML = `
+    <center>
+        <div class="submit-response">
+            <h1>Registrations will be opened on</h1>
+            <h2>October 1st, 2024 - 12:00 PM onwards</h2>
+        </div>
+    </center>`;
+    form.insertAdjacentElement('afterbegin', responseDiv);
 }
 
 function showThanks() {
