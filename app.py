@@ -1,10 +1,21 @@
 from flask import Flask, request, render_template, url_for, redirect
-import json
+from modules.mysql import MySQLConn
+import json, sys
 
 app = Flask(__name__)
 
 with open('./config.json') as f:
     conf = json.load(f)
+
+sqlconf = conf['mysqldb']
+mysql = None
+
+try:
+    mysql = MySQLConn(sqlconf['host'], sqlconf['user'], sqlconf['password'], sqlconf['db'])
+    print("MySQL conn. successful..")
+except:
+    print("MYSQL error.. Exiting")
+    sys.exit()
 
 @app.route("/")
 def home():
@@ -16,11 +27,31 @@ def registration():
 
 @app.route("/submitregn", methods=["POST"])
 def submit():
-    return(request.form)
+    full_name = request.form["fullName"]
+    dept = request.form["dept"]
+    sem = request.form["sem"]
+    exam_roll = request.form["examroll"]
+    email = request.form["email"]
+    whatsapp = request.form["whatsapp"]
+    team = request.form["team"]
+    skill = request.form["skill"]
+    about = request.form["about"]
+
+    mysql.insertApp(full_name,dept,sem,exam_roll,email,whatsapp,team,skill,about)
+
+    return(redirect(url_for('registration', success='true')))
 
 @app.route("/patrons")
 def patronsinfo():
     return render_template("patrons.html", patrons = conf['patrons'])
+
+@app.route("/faqs")
+def faq():
+    return render_template("faqs.html")
+
+@app.route("/tnc")
+def terms():
+    return render_template("tnc.html")
 
 @app.route("/teams")
 def teaminfo():
