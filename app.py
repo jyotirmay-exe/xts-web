@@ -57,7 +57,7 @@ def terms():
 
 @app.route("/teams")
 def teaminfo():
-    return render_template("teams.html", heads = conf['team-heads'])
+    return render_template("teams.html", heads = conf['team-heads'], members = conf['team-members'])
 
 @app.route("/contact")
 def contactus():
