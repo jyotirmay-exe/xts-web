@@ -1,22 +1,25 @@
 from flask import Flask, request, render_template, url_for, redirect
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from modules.mysql import MySQLConn
-import json, sys
+from dotenv import load_dotenv
+import json, sys, os
 
 app = Flask(__name__)
 
-with open('./config.json') as f:
+load_dotenv()
+
+with open('./static/config.json') as f:
     conf = json.load(f)
 
-sqlconf = conf['mysqldb']
 mysql = None
-webhook = DiscordWebhook(url=conf['webhookURL'], username="New Webhook Username")
+webhook = DiscordWebhook(url=os.getenv("WEBHOOK_URL"), username="New Webhook Username")
 
 try:
-    mysql = MySQLConn(sqlconf['host'], sqlconf['user'], sqlconf['password'], sqlconf['db'])
+    mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
     print("MySQL conn. successful..")
-except:
+except Exception as ex:
     print("MYSQL error.. Exiting")
+    print(ex)
     sys.exit()
 
 @app.route("/")
