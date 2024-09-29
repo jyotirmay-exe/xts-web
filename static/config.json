@@ -1,0 +1,71 @@
+{
+    "team-heads": {
+        "tech": [ 
+            {
+                "name": "Mukul Nag",
+                "src": "https://i.ibb.co/Bf6sSHX/tech-mukul-nag.jpg"
+            },
+            {
+                "name": "Zaid Hassan",
+                "src": "https://i.ibb.co/r5HgbHZ/tech-zaid-hassan.jpg"
+            }
+        ],
+        "pr": [
+            {
+                "name": "Vidya Bharti",
+                "src": "https://i.ibb.co/ZSw4WbB/pr-vidya-bharti.jpg"
+            },
+            {
+                "name": "Yumna Fatima",
+                "src": "https://i.ibb.co/82v7Vv8/pr-yumna-fatima.jpg"
+            }
+        ],
+        "exec": [
+            {
+                "name": "Anushka Anand",
+                "src": "https://i.ibb.co/wg3D1s4/exec-anushka-anand.jpg"
+            },
+            {
+                "name": "Jyotirmay Kumar Jha",
+                "src": "https://i.ibb.co/jHkwLqn/exec-jyotirmay-kumar-jha.png"
+            }
+        ]
+    },
+    "team-members" : {
+        "tech" : ["Sweta Mehta", "Aayush Carol Baxla"],
+        "pr": ["Aanchal Kumari", "Ritika Prakash", "Shruti Shukla", "Bobby Pal", "Rohit Kr. Das", "Harsh Kumar", "Shantosh Kumar", "Rajveer Pathak"],
+        "exec": ["Prashank Kumar Gupta", "Ronit Sam Horo", "Yash Pandey"]
+    },
+    "patrons": {
+        "hod": {
+            "name": "Dr. Swarat Chaudhuri",
+            "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/PhySwaratChaudhuri.jpg"
+        },
+        "teachers": [
+            {
+                "name": "Dr. Kamaldeep",
+                "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/ITKamaldeep.jpg"
+            },
+            {
+                "name": "Dr. Supriya Gupta",
+                "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/ItSupriyaGupta.jpg"
+            },
+            {
+                "name": "Mr. Ritesh Kumar",
+                "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/ItRiteshKumar.jpg"
+            },
+            {
+                "name": "Mr. Suryanarayan Prasad",
+                "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/ItSuryaNarayanPrasad.jpg"
+            },
+            {
+                "name": "Dr. Rakesh Raja",
+                "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/ItRakeshRaja.jpg"
+            },
+            {
+                "name": "Mr. Gurpreet Singh",
+                "src": "https://www.sxcran.org/Images/Faculty/CAPPIT/ItGurpreetSingh.jpg"
+            }
+        ]
+    }
+}
