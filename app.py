@@ -3,6 +3,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 from modules.mysql import MySQLConn
 from dotenv import load_dotenv
 import json, sys, os
+import logging
 
 app = Flask(__name__)
 
@@ -11,27 +12,33 @@ load_dotenv()
 with open('./static/config.json') as f:
     conf = json.load(f)
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 mysql = None
 webhook = DiscordWebhook(url=os.getenv("WEBHOOK_URL"), username="New Webhook Username")
 
 try:
     mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
-    print("MySQL conn. successful..")
+    logging.info("MySQL connection successful.")
 except Exception as ex:
-    print("MYSQL error.. Exiting")
-    print(ex)
+    logging.error("MySQL connection failed. Exiting.")
+    logging.error(ex)
     sys.exit()
 
 @app.route("/")
 def home():
+    logging.info("Accessed Home page.")
     return render_template('index.html')
 
 @app.route("/register")
 def registration():
-    return(render_template("regForm.html"))
+    logging.info("Accessed Registration page.")
+    return render_template("regForm.html")
 
 @app.route("/submitregn", methods=["POST"])
 def submit():
+    logging.info("Registration form submitted.")
+    
     full_name = request.form["fullName"]
     dept = request.form["dept"]
     sem = request.form["sem"]
@@ -42,32 +49,39 @@ def submit():
     skill = request.form["skill"]
     about = request.form["about"]
 
-    mysql.insertApp(full_name,dept,sem,exam_roll,email,whatsapp,team,skill,about)
+    mysql.insertApp(full_name, dept, sem, exam_roll, email, whatsapp, team, skill, about)
 
-    return(redirect(url_for('registration', success='true')))
+    return redirect(url_for('registration', success='true'))
 
 @app.route("/patrons")
 def patronsinfo():
-    return render_template("patrons.html", patrons = conf['patrons'])
+    logging.info("Accessed Patrons Info page.")
+    return render_template("patrons.html", patrons=conf['patrons'])
 
 @app.route("/faqs")
 def faq():
+    logging.info("Accessed FAQs page.")
     return render_template("faqs.html")
 
 @app.route("/tnc")
 def terms():
+    logging.info("Accessed Terms and Conditions page.")
     return render_template("tnc.html")
 
 @app.route("/teams")
 def teaminfo():
-    return render_template("teams.html", heads = conf['team-heads'], members = conf['team-members'])
+    logging.info("Accessed Teams Info page.")
+    return render_template("teams.html", heads=conf['team-heads'], members=conf['team-members'])
 
 @app.route("/contact")
 def contactus():
+    logging.info("Accessed Contact Us page.")
     return render_template("contact.html")
 
 @app.route("/send-message", methods=["POST"])
 def sendMessage():
+    logging.info("Contact form submitted.")
+    
     name = request.form['name']
     email = request.form['email']
     msg = request.form['message']
@@ -83,4 +97,5 @@ def sendMessage():
     return redirect(url_for("contactus"))
 
 if __name__ == "__main__":
+    logging.info("Starting the Flask server.")
     app.run()
