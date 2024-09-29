@@ -145,6 +145,7 @@ body {
 
 .about-area .checkbox .checkboxLabel a{
     color: white;
+    font-weight: 700;
 }
 
 .about-area .checkbox label {
@@ -184,7 +185,7 @@ body {
 }
 
 .about-area .bullet-points li::marker {
-    color: rgba(56, 204, 63, 1); /* matches the green hover color */
+    color: rgba(56, 204, 63, 1);
 }
 
 .about-area .bullet-points li span {
