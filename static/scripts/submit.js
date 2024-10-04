@@ -111,11 +111,6 @@ function validateInputs() {
         allCorrect = false;
     }
 
-    if (examroll.length !== 12) {
-        alert("Invalid exam roll no.");
-        allCorrect = false;
-    }
-
     if (!(email.match('[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+\.[a-z]+'))) {
         alert("Invalid Email ID");
         allCorrect = false;
