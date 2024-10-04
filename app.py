@@ -43,6 +43,8 @@ def submit():
     dept = request.form["dept"]
     sem = request.form["sem"]
     exam_roll = request.form["examroll"]
+    if len(exam_roll) < 12:
+        exam_roll += " (Class)"
     email = request.form["email"]
     whatsapp = request.form["whatsapp"]
     team = request.form["team"]
