@@ -115,8 +115,9 @@
 
     <script src="/static/scripts/submit.js"></script>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('success') != 'true') {
-            window.onload = alert("Enter Class Roll No. if Exam Roll No. is not allotted.")
+            window.onload = alert("Enter Class Roll No. if Exam Roll No. is not allotted.");
         }
     </script>
 </body>

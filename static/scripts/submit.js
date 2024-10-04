@@ -1,5 +1,4 @@
 window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
 
     const deadline = new Date('2024-10-01T12:00:00'); // October 1, 2024 12:00 PM
     const currentDate = new Date();
