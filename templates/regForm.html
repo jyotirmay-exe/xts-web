@@ -114,6 +114,11 @@
     </div>
 
     <script src="/static/scripts/submit.js"></script>
+    <script>
+        if (urlParams.get('success') != 'true') {
+            window.onload = alert("Enter Class Roll No. if Exam Roll No. is not allotted.")
+        }
+    </script>
 </body>
 
 </html>
