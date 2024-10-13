@@ -110,6 +110,13 @@ function validateInputs() {
         allCorrect = false;
     }
 
+    if(examroll.length===12) {
+        if (!examroll.match(/^[0-9]{2}[A-Za-z]{4}[0-9]{6}$/)) {
+            alert("Invalid Exam Roll Format");
+            allCorrect = false;
+        }
+    }
+
     if (!(email.match('[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+\.[a-z]+'))) {
         alert("Invalid Email ID");
         allCorrect = false;
