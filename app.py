@@ -32,6 +32,18 @@ def home():
 
 @app.route("/register")
 def registration():
+    try:
+        mysql.ping()
+        logging.info("MySQL connection active.")
+    except Exception as ex:
+        logging.error("Failed to ping MySQL server. Attempting reconnection.")
+        try:
+            mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
+            logging.info("MySQL reconnection successful.")
+        except Exception as reconnect_ex:
+            logging.error("MySQL reconnection failed.")
+            logging.error(reconnect_ex)
+            return "Internal Server Error. Please try again later.", 500    
     logging.info("Accessed Registration page.")
     return render_template("regForm.html")
 

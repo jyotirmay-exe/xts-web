@@ -28,3 +28,10 @@ class MySQLConn:
             result.append(dict(zip(columns, row)))
         
         return result
+    
+    def ping(self):
+        try:
+            self.conn.ping(reconnect=True, attempts=3, delay=5) 
+            print("Pinged MySQL instance")
+        except mysql.Error as e:
+            print(f"Error pinging the server: {e}")
