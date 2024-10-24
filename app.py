@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, url_for, redirect
 from discord_webhook import DiscordWebhook, DiscordEmbed
-from modules.mysql import MySQLConn
+from modules.supabase import SupabaseConn
 from dotenv import load_dotenv
 import json, sys, os
 import logging
@@ -14,14 +14,14 @@ with open('./static/config.json') as f:
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-mysql = None
-webhook = DiscordWebhook(url=os.getenv("WEBHOOK_URL"), username="New Webhook Username")
+supabase = None
+webhook = DiscordWebhook(url=os.getenv("WEBHOOK_URL"))
 
 try:
-    mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
-    logging.info("MySQL connection successful.")
+    supabase = SupabaseConn(os.getenv('SUPABASE_URL'), os.getenv('SUPABASE_KEY'))
+    logging.info("Supabase connection successful.")
 except Exception as ex:
-    logging.error("MySQL connection failed. Exiting.")
+    logging.error("Supabase connection failed. Exiting.")
     logging.error(ex)
     sys.exit()
 
@@ -33,17 +33,11 @@ def home():
 @app.route("/register")
 def registration():
     try:
-        mysql.ping()
-        logging.info("MySQL connection active.")
+        supabase.ping()
+        logging.info("Supabase connection active.")
     except Exception as ex:
-        logging.error("Failed to ping MySQL server. Attempting reconnection.")
-        try:
-            mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
-            logging.info("MySQL reconnection successful.")
-        except Exception as reconnect_ex:
-            logging.error("MySQL reconnection failed.")
-            logging.error(reconnect_ex)
-            return "Internal Server Error. Please try again later.", 500    
+        logging.error("Failed to ping Supabase server.")
+        return "Internal Server Error. Please try again later.", 500    
     logging.info("Accessed Registration page.")
     return render_template("regForm.html")
 
@@ -63,7 +57,7 @@ def submit():
     skill = request.form["skill"]
     about = request.form["about"]
 
-    mysql.insertApp(full_name, dept, sem, exam_roll, email, whatsapp, team, skill, about)
+    supabase.insert_app(full_name, dept, sem, exam_roll, email, whatsapp, team, skill, about)
 
     return redirect(url_for('registration', success='true'))
 
@@ -108,8 +102,4 @@ def sendMessage():
     webhook.add_embed(embed)
     response = webhook.execute()
 
-    return redirect(url_for("contactus"))
-
-if __name__ == "__main__":
-    logging.info("Starting the Flask server.")
-    app.run()
+    retur
