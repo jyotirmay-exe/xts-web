@@ -23,7 +23,7 @@ class SupabaseConn:
         self.client.table("applications").insert(data).execute()
 
     def select_all(self):
-        response = self.client.table("applications").select("*").execute()
+        response = self.client.table("applications").select("*").order("fullName").execute()
         return response.data
 
     def ping(self):
