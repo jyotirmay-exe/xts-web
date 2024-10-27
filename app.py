@@ -25,6 +25,8 @@ except Exception as ex:
     logging.error(ex)
     sys.exit()
 
+app = Flask(__name__)
+
 @app.route("/")
 def home():
     logging.info("Accessed Home page.")
@@ -60,8 +62,6 @@ def submit():
     supabase.insert_app(full_name, dept, sem, exam_roll, email, whatsapp, team, skill, about)
 
     return redirect(url_for('registration', success='true'))
-
-app = Flask(__name__)
 
 @app.route("/api/applications", methods=["GET", "OPTIONS"])
 def get_applications():
