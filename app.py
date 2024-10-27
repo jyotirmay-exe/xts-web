@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect, jsonify
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from modules.supabase import SupabaseConn
 from dotenv import load_dotenv
@@ -61,6 +61,35 @@ def submit():
 
     return redirect(url_for('registration', success='true'))
 
+app = Flask(__name__)
+
+@app.route("/api/applications", methods=["GET", "OPTIONS"])
+def get_applications():
+    if request.method == "OPTIONS":
+        response = jsonify() 
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Methods", "GET, OPTIONS")
+        response.headers.add("Access-Control-Allow-Headers", "API-Key")
+        return response
+
+    api_key = request.headers.get("API-Key")
+    if api_key != os.getenv("API_KEY"):
+        logging.warning("Unauthorized access attempt to /api/applications.")
+        return {"error": "Unauthorized access"}, 401
+
+    try:
+        applications = supabase.select_all() 
+        logging.info("Fetched all applications for authorized request.")
+        
+        response = jsonify({"applications": applications})
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        
+        return response, 200
+    except Exception as ex:
+        logging.error("Error fetching applications.")
+        logging.error(ex)
+        return {"error": "Internal Server Error"}, 500
+
 @app.route("/patrons")
 def patronsinfo():
     logging.info("Accessed Patrons Info page.")
@@ -102,4 +131,4 @@ def sendMessage():
     webhook.add_embed(embed)
     response = webhook.execute()
 
-    retur
+    return
