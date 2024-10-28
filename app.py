@@ -1,6 +1,6 @@
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect, jsonify
 from discord_webhook import DiscordWebhook, DiscordEmbed
-from modules.mysql import MySQLConn
+from modules.supabase import SupabaseConn
 from dotenv import load_dotenv
 import json, sys, os
 import logging
@@ -14,16 +14,18 @@ with open('./static/config.json') as f:
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-mysql = None
-webhook = DiscordWebhook(url=os.getenv("WEBHOOK_URL"), username="New Webhook Username")
+supabase = None
+webhook = DiscordWebhook(url=os.getenv("WEBHOOK_URL"))
 
 try:
-    mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
-    logging.info("MySQL connection successful.")
+    supabase = SupabaseConn(os.getenv('SUPABASE_URL'), os.getenv('SUPABASE_KEY'))
+    logging.info("Supabase connection successful.")
 except Exception as ex:
-    logging.error("MySQL connection failed. Exiting.")
+    logging.error("Supabase connection failed. Exiting.")
     logging.error(ex)
     sys.exit()
+
+app = Flask(__name__)
 
 @app.route("/")
 def home():
@@ -33,17 +35,11 @@ def home():
 @app.route("/register")
 def registration():
     try:
-        mysql.ping()
-        logging.info("MySQL connection active.")
+        supabase.ping()
+        logging.info("Supabase connection active.")
     except Exception as ex:
-        logging.error("Failed to ping MySQL server. Attempting reconnection.")
-        try:
-            mysql = MySQLConn(os.getenv('DB_HOST'), os.getenv('DB_USER'), os.getenv('DB_PASS'), os.getenv('DB_NAME'))
-            logging.info("MySQL reconnection successful.")
-        except Exception as reconnect_ex:
-            logging.error("MySQL reconnection failed.")
-            logging.error(reconnect_ex)
-            return "Internal Server Error. Please try again later.", 500    
+        logging.error("Failed to ping Supabase server.")
+        return "Internal Server Error. Please try again later.", 500    
     logging.info("Accessed Registration page.")
     return render_template("regForm.html")
 
@@ -63,9 +59,36 @@ def submit():
     skill = request.form["skill"]
     about = request.form["about"]
 
-    mysql.insertApp(full_name, dept, sem, exam_roll, email, whatsapp, team, skill, about)
+    supabase.insert_app(full_name, dept, sem, exam_roll, email, whatsapp, team, skill, about)
 
     return redirect(url_for('registration', success='true'))
+
+@app.route("/api/applications", methods=["GET", "OPTIONS"])
+def get_applications():
+    if request.method == "OPTIONS":
+        response = jsonify() 
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Methods", "GET, OPTIONS")
+        response.headers.add("Access-Control-Allow-Headers", "API-Key")
+        return response
+
+    api_key = request.headers.get("API-Key")
+    if api_key != os.getenv("API_KEY"):
+        logging.warning("Unauthorized access attempt to /api/applications.")
+        return {"error": "Unauthorized access"}, 401
+
+    try:
+        applications = supabase.select_all() 
+        logging.info("Fetched all applications for authorized request.")
+        
+        response = jsonify({"applications": applications})
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        
+        return response, 200
+    except Exception as ex:
+        logging.error("Error fetching applications.")
+        logging.error(ex)
+        return {"error": "Internal Server Error"}, 500
 
 @app.route("/patrons")
 def patronsinfo():
@@ -108,8 +131,4 @@ def sendMessage():
     webhook.add_embed(embed)
     response = webhook.execute()
 
-    return redirect(url_for("contactus"))
-
-if __name__ == "__main__":
-    logging.info("Starting the Flask server.")
-    app.run()
+    return
